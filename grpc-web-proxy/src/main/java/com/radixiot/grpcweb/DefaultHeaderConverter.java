@@ -42,10 +42,10 @@ public class DefaultHeaderConverter implements HeaderConverter {
 
     @Override
     public Stream<Header> toHeaders(Metadata metadata) {
+        var encoder = Base64.getEncoder().withoutPadding();
         return metadata.keys().stream().flatMap(key -> {
             if (key.endsWith(Metadata.BINARY_HEADER_SUFFIX)) {
                 var metaDataKey = Metadata.Key.of(key, Metadata.BINARY_BYTE_MARSHALLER);
-                var encoder = Base64.getEncoder();
                 var iterable = Objects.requireNonNull(metadata.getAll(metaDataKey));
                 return StreamSupport.stream(iterable.spliterator(), false).map(encoder::encodeToString)
                         .map(value -> new Header(key, value));

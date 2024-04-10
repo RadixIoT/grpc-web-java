@@ -51,7 +51,6 @@ class MessageResponseWriter<R> implements ResponseWriter {
     @Override
     public void writeTrailers(Status status, Metadata trailer) throws IOException {
         delegate.writeTrailers(status, trailer);
-
     }
 
     @Override

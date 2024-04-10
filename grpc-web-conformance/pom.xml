@@ -31,7 +31,7 @@
     <name>gRPC-Web conformance tests</name>
 
     <properties>
-        <connect.conformance.version>v1.0.0-rc4</connect.conformance.version>
+        <connect.conformance.version>v1.0.1</connect.conformance.version>
     </properties>
 
     <dependencies>
