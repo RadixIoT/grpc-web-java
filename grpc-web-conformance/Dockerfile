@@ -12,5 +12,5 @@ COPY target/lib /root/lib
 COPY target/agent /root/agent
 WORKDIR "/root"
 ENV CLASSPATH="/root/classes:/root/lib/*"
-ENTRYPOINT ["./connectconformance", "--conf", "config.yaml", "--mode", "server", "--known-flaky", "Deadline Propagation/**", "--"]
+ENTRYPOINT ["./connectconformance", "-vv", "--trace", "--conf", "config.yaml", "--mode", "server", "--known-flaky", "Deadline Propagation/**", "--"]
 CMD ["java", "-javaagent:agent/org.jacoco.agent-runtime.jar=destfile=jacoco.exec,includes=com.radixiot.grpcweb.*", "com.radixiot.grpcweb.conformance.ConformanceMain"]

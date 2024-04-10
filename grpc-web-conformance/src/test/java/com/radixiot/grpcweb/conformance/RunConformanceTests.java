@@ -22,11 +22,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Objects;
 
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.containers.output.OutputFrame.OutputType;
 import org.testcontainers.containers.startupcheck.IndefiniteWaitOneShotStartupCheckStrategy;
 import org.testcontainers.utility.DockerImageName;
 
@@ -35,6 +39,7 @@ import org.testcontainers.utility.DockerImageName;
  */
 class RunConformanceTests {
 
+    private final Logger log = LoggerFactory.getLogger(getClass());
     private final DockerImageName imageName;
 
     RunConformanceTests() throws IOException {
@@ -57,8 +62,16 @@ class RunConformanceTests {
 
             container.start();
 
-            @Nullable String destFile = System.getProperty("jacoco.destFile");
-            container.copyFileFromContainer("/root/jacoco.exec", destFile != null ? destFile : "jacoco.exec");
+            log.info("Container stdout:\n{}", container.getLogs(OutputType.STDOUT));
+            log.debug("Container stderr:\n{}", container.getLogs(OutputType.STDERR));
+
+            String destFile = System.getProperty("jacoco.destFile", "target/jacoco.exec");
+            Path dest = Path.of(destFile).toAbsolutePath().normalize();
+            log.info("Copying test coverage file to: {}", dest);
+            container.copyFileFromContainer("/root/jacoco.exec", dest.toString());
+            if (!Files.exists(dest)) {
+                log.error("Failed to copy test coverage file");
+            }
 
             // one shot startup strategy waits until the container exits with a successful exit code
             assertThat(container.isRunning()).isFalse();
