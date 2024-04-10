@@ -73,16 +73,6 @@
         </repository>
     </distributionManagement>
 
-    <repositories>
-        <repository>
-            <id>grpc-web-java</id>
-            <name>gRPC Web Packages on Github</name>
-            <url>https://maven.pkg.github.com/radixiot/grpc-web-java</url>
-            <releases><enabled>true</enabled></releases>
-            <snapshots><enabled>true</enabled></snapshots>
-        </repository>
-    </repositories>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
