@@ -37,12 +37,12 @@ import org.testcontainers.utility.DockerImageName;
 /**
  * @author Jared Wiltshire
  */
-class RunConformanceTests {
+class RunConformanceTest {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final DockerImageName imageName;
 
-    RunConformanceTests() throws IOException {
+    RunConformanceTest() throws IOException {
         String imageName = loadStringResource("META-INF/docker/com.radixiot.grpcweb/grpc-web-conformance/image-name");
         this.imageName = DockerImageName.parse(imageName);
     }
@@ -65,7 +65,7 @@ class RunConformanceTests {
             log.info("Container stdout:\n{}", container.getLogs(OutputType.STDOUT));
             log.debug("Container stderr:\n{}", container.getLogs(OutputType.STDERR));
 
-            String destFile = System.getProperty("jacoco.destFile", "target/jacoco.exec");
+            String destFile = System.getProperty("jacoco.destFile", "jacoco.exec");
             Path dest = Path.of(destFile).toAbsolutePath().normalize();
             log.info("Copying test coverage file to: {}", dest);
             container.copyFileFromContainer("/root/jacoco.exec", dest.toString());
