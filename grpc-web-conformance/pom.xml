@@ -31,7 +31,7 @@
     <name>gRPC-Web conformance tests</name>
 
     <properties>
-        <connect.conformance.version>v1.0.1</connect.conformance.version>
+        <connect.conformance.version>v1.0.2</connect.conformance.version>
     </properties>
 
     <dependencies>
@@ -58,10 +58,16 @@
             <groupId>org.eclipse.jetty.ee10</groupId>
             <artifactId>jetty-ee10-servlet</artifactId>
         </dependency>
+        <!-- https://buf.build/connectrpc/conformance/sdks/v1.0.2 -->
         <dependency>
             <groupId>build.buf.gen</groupId>
             <artifactId>connectrpc_conformance_grpc_java</artifactId>
-            <version>1.63.0.1.20240318173947.41a3ba29dc4e</version>
+            <version>1.68.1.1.20240318173947.41a3ba29dc4e</version>
+        </dependency>
+        <dependency>
+            <groupId>build.buf.gen</groupId>
+            <artifactId>connectrpc_conformance_protocolbuffers_java</artifactId>
+            <version>25.3.0.2.20240318173947.41a3ba29dc4e</version>
         </dependency>
 
         <dependency>
@@ -78,11 +84,17 @@
             <groupId>org.testcontainers</groupId>
             <artifactId>testcontainers</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>commons-compress</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-compress</artifactId>
-            <version>1.26.1</version>
+            <version>1.26.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>

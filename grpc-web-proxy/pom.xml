@@ -89,7 +89,7 @@
         <dependency>
             <groupId>com.connectrpc</groupId>
             <artifactId>connect-kotlin-google-java-ext</artifactId>
-            <version>0.6.0</version>
+            <version>0.7.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
