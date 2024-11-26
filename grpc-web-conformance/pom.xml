@@ -55,8 +55,8 @@
             <artifactId>jetty-server</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.eclipse.jetty.ee8</groupId>
-            <artifactId>jetty-ee8-servlet</artifactId>
+            <groupId>org.eclipse.jetty.ee10</groupId>
+            <artifactId>jetty-ee10-servlet</artifactId>
         </dependency>
         <dependency>
             <groupId>build.buf.gen</groupId>
@@ -150,12 +150,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <systemProperties>
-                        <property>
-                            <name>jacoco.destFile</name>
-                            <value>${project.build.directory}/jacoco.exec</value>
-                        </property>
-                    </systemProperties>
+                    <systemPropertyVariables>
+                        <jacoco.destFile>${project.build.directory}/jacoco.exec</jacoco.destFile>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>

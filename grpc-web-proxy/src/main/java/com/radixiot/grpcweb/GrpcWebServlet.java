@@ -19,12 +19,12 @@ package com.radixiot.grpcweb;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-import javax.servlet.AsyncContext;
-import javax.servlet.AsyncEvent;
-import javax.servlet.AsyncListener;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.AsyncContext;
+import jakarta.servlet.AsyncEvent;
+import jakarta.servlet.AsyncListener;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.slf4j.Logger;
@@ -37,8 +37,8 @@ import io.grpc.StatusRuntimeException;
  */
 public class GrpcWebServlet extends HttpServlet {
 
-    private final Logger log = LoggerFactory.getLogger(getClass());
-    private final RequestHandler requestHandler;
+    private final transient Logger log = LoggerFactory.getLogger(getClass());
+    private final transient RequestHandler requestHandler;
 
     public GrpcWebServlet() {
         this(RequestHandler.builder().build());

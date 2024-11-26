@@ -18,7 +18,7 @@ package com.radixiot.grpcweb;
 
 import java.util.NoSuchElementException;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 
